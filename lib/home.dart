@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-  final String assetName = 'assets/icons/backButton.svg';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +20,12 @@ class HomePage extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 )),
+          ),
+          Container(
+            child: Image.asset('assets/images/sedan.png'),
+          ),
+          Container(
+            child: Image.asset('assets/images/suv.png'),
           ),
         ],
       ),
