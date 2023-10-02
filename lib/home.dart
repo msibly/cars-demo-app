@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: const HomePage(),
+  runApp(const MaterialApp(
+    home: HomePage(),
   ));
 }
 
 class HomePage extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const HomePage({Key? key});
 
   @override
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
       appBar: appBar(),
       body: Column(
         children: [
-          heading(),
+          bodyHeading(),
           gridElements(context),
         ],
       ),
@@ -41,14 +42,17 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Center heading() {
+  Center bodyHeading() {
     return const Center(
       child: Padding(
         padding: EdgeInsets.only(top: 10),
         child: Text(
           'CarVariants',
           style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -59,20 +63,30 @@ class HomePage extends StatelessWidget {
       title: const Text(
         'CarBay',
         style: TextStyle(
-            color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       backgroundColor: const Color.fromARGB(255, 79, 218, 125),
       elevation: 0.0,
       centerTitle: true,
-      leading: Container(
-        margin: const EdgeInsets.all(10),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
-        child: SvgPicture.asset(
-          'assets/icons/backButton.svg', // Replace with your image path
-          height: 200,
-          width: 200,
+      leading: GestureDetector(
+        onTap: () {
+          //ontap function declaration
+        },
+        child: Container(
+          margin: const EdgeInsets.all(10),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: SvgPicture.asset(
+            'assets/icons/backButton.svg', // Replace with your image path
+            height: 30,
+            width: 30,
+          ),
         ),
       ),
     );
@@ -89,7 +103,7 @@ class GridItem {
 class GridItemWidget extends StatelessWidget {
   final GridItem item;
 
-  GridItemWidget({required this.item});
+  const GridItemWidget({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -97,25 +111,35 @@ class GridItemWidget extends StatelessWidget {
       margin: const EdgeInsets.all(20), // Margin around each item
       decoration: BoxDecoration(
         color: Colors.white, // Background color of each item
-        borderRadius: BorderRadius.circular(8), // Rounded corners
+        borderRadius: BorderRadius.circular(10), // Rounded corners
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5), // Shadow color
-            spreadRadius: 2, // Spread radius
-            blurRadius: 5, // Blur radius
-            offset: const Offset(0, 2), // Offset in x and y direction
+            spreadRadius: 5, // Spread radius
+            blurRadius: 10, // Blur radius
+            offset: const Offset(0, 0), // Offset in x and y direction
           ),
         ],
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment:
+            MainAxisAlignment.spaceEvenly, //Column arrangement in grid items
         children: [
           Container(
+            margin: const EdgeInsets.only(top: 10),
             width: 100, // Width and height of the image container
             height: 100,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle, // Circular shape
-              color: Colors.blue, // Background color of the circular container
+              color: Colors.white, // Background color of the circular container
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5), // Shadow color
+                  spreadRadius: 5, // Spread radius
+                  blurRadius: 10, // Blur radius
+                  offset: const Offset(0, 2), // Offset in x and y direction
+                ),
+              ],
             ),
             child: Center(
               child: Image.asset(
@@ -125,10 +149,10 @@ class GridItemWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20), // Spacing between the image and text
+          // const SizedBox(height: 10), // Spacing between the image and text
           Text(
             item.title, // title from GridItem
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],
       ),
