@@ -17,7 +17,19 @@ class HomePage extends StatelessWidget {
       appBar: appBar(),
       body: Column(
         children: [
-          bodyHeading(),
+          const Center(
+            child: Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(
+                'CarVariants',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
           gridElements(context),
         ],
       ),
@@ -27,9 +39,18 @@ class HomePage extends StatelessWidget {
   Expanded gridElements(BuildContext context) {
     // Define a list of grid items with titles and image paths
     final List<GridItem> gridItems = [
-      GridItem(title: 'Hatchback', imagePath: 'assets/images/hatchback.png'),
-      GridItem(title: 'Sedan', imagePath: 'assets/images/sedan.png'),
-      GridItem(title: 'SUV', imagePath: 'assets/images/suv.png'),
+      GridItem(
+        title: 'Hatchback',
+        imagePath: 'assets/images/hatchback.png',
+      ),
+      GridItem(
+        title: 'Sedan',
+        imagePath: 'assets/images/sedan.png',
+      ),
+      GridItem(
+        title: 'SUV',
+        imagePath: 'assets/images/suv.png',
+      ),
     ];
 
     return Expanded(
@@ -38,22 +59,6 @@ class HomePage extends StatelessWidget {
         children: gridItems.map((item) {
           return GridItemWidget(item: item);
         }).toList(),
-      ),
-    );
-  }
-
-  Center bodyHeading() {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: 10),
-        child: Text(
-          'CarVariants',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
     );
   }
@@ -73,7 +78,7 @@ class HomePage extends StatelessWidget {
       centerTitle: true,
       leading: GestureDetector(
         onTap: () {
-          //ontap function declaration
+          //ontap function defenitions
         },
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -83,7 +88,7 @@ class HomePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: SvgPicture.asset(
-            'assets/icons/backButton.svg', // Replace with your image path
+            'assets/icons/backButton.svg', // image path
             height: 30,
             width: 30,
           ),
