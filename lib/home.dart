@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/page_hatchback.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-void main() {
-  runApp(const MaterialApp(
-    home: HomePage(),
-  ));
-}
 
 class HomePage extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
@@ -21,7 +16,7 @@ class HomePage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(top: 10),
               child: Text(
-                'CarVariants',
+                'Car Variants',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -42,14 +37,31 @@ class HomePage extends StatelessWidget {
       GridItem(
         title: 'Hatchback',
         imagePath: 'assets/images/hatchback.png',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HatchbackPage(),
+            ),
+          );
+        },
       ),
       GridItem(
         title: 'Sedan',
         imagePath: 'assets/images/sedan.png',
+        onTap: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HatchbackPage(),
+            ),
+          )
+        },
       ),
       GridItem(
         title: 'SUV',
         imagePath: 'assets/images/suv.png',
+        onTap: () => {},
       ),
     ];
 
@@ -101,8 +113,13 @@ class HomePage extends StatelessWidget {
 class GridItem {
   final String title;
   final String imagePath;
+  final VoidCallback? onTap;
 
-  GridItem({required this.title, required this.imagePath});
+  GridItem({
+    required this.title,
+    required this.imagePath,
+    required this.onTap,
+  });
 }
 
 class GridItemWidget extends StatelessWidget {
@@ -112,54 +129,58 @@ class GridItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(20), // Margin around each item
-      decoration: BoxDecoration(
-        color: Colors.white, // Background color of each item
-        borderRadius: BorderRadius.circular(10), // Rounded corners
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5), // Shadow color
-            spreadRadius: 5, // Spread radius
-            blurRadius: 10, // Blur radius
-            offset: const Offset(0, 0), // Offset in x and y direction
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly, //Column arrangement in grid items
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 10),
-            width: 100, // Width and height of the image container
-            height: 100,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle, // Circular shape
-              color: Colors.white, // Background color of the circular container
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5), // Shadow color
-                  spreadRadius: 5, // Spread radius
-                  blurRadius: 10, // Blur radius
-                  offset: const Offset(0, 2), // Offset in x and y direction
-                ),
-              ],
+    return GestureDetector(
+      onTap: item.onTap,
+      child: Container(
+        margin: const EdgeInsets.all(20), // Margin around each item
+        decoration: BoxDecoration(
+          color: Colors.white, // Background color of each item
+          borderRadius: BorderRadius.circular(10), // Rounded corners
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // Shadow color
+              spreadRadius: 5, // Spread radius
+              blurRadius: 10, // Blur radius
+              offset: const Offset(0, 0), // Offset in x and y direction
             ),
-            child: Center(
-              child: Image.asset(
-                item.imagePath, // image path from GridItem
-                width: 100, // width and height of the image
-                height: 100,
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.spaceEvenly, //Column arrangement in grid items
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              width: 100, // Width and height of the image container
+              height: 100,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle, // Circular shape
+                color:
+                    Colors.white, // Background color of the circular container
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5), // Shadow color
+                    spreadRadius: 5, // Spread radius
+                    blurRadius: 10, // Blur radius
+                    offset: const Offset(0, 2), // Offset in x and y direction
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Image.asset(
+                  item.imagePath, // image path from GridItem
+                  width: 100, // width and height of the image
+                  height: 100,
+                ),
               ),
             ),
-          ),
-          // const SizedBox(height: 10), // Spacing between the image and text
-          Text(
-            item.title, // title from GridItem
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-        ],
+            // const SizedBox(height: 10), // Spacing between the image and text
+            Text(
+              item.title, // title from GridItem
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ],
+        ),
       ),
     );
   }

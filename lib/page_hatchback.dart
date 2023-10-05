@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class pageHatchback extends StatefulWidget {
-  const pageHatchback({super.key});
+class HatchbackPage extends StatefulWidget {
+  const HatchbackPage({super.key});
 
   @override
-  State<pageHatchback> createState() => _pageHatchbackState();
+  State<HatchbackPage> createState() => _HatchbackPageState();
 }
 
-class _pageHatchbackState extends State<pageHatchback> {
+class _HatchbackPageState extends State<HatchbackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
